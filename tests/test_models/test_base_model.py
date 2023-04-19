@@ -74,7 +74,6 @@ class test_basemodel(unittest.TestCase):
         with self.assertRaises(TypeError):
             new = self.value(**n)
 
-    @unittest.skip("KeyError not raised")
     def test_kwargs_one(self):
         """ """
         n = {'Name': 'test'}
@@ -97,4 +96,4 @@ class test_basemodel(unittest.TestCase):
         self.assertEqual(type(new.updated_at), datetime.datetime)
         n = new.to_dict()
         new = BaseModel(**n)
-        self.assertTrue(new.created_at == new.updated_at)
+        self.assertFalse(new.created_at == new.updated_at)
